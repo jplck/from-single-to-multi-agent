@@ -1,0 +1,51 @@
+{
+    "name": "Azure Developer CLI",
+    "build": { "dockerfile": "Dockerfile" },
+    "features": {
+        "ghcr.io/devcontainers/features/azure-cli:1": {
+            "version": "2.62.0"
+        },
+        "ghcr.io/devcontainers/features/docker-from-docker:1": {
+            "version": "20.10"
+        },
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "version": "2"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.azure-dev",
+                "ms-azuretools.vscode-bicep",
+                "ms-azuretools.vscode-docker",
+                "ms-vscode.vscode-node-azure-pack",
+                "ms-vscode.js-debug",
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint",
+                "ms-azuretools.vscode-azurefunctions",
+                "github.vscode-github-actions",
+                "GitHub.copilot",
+                "ms-python.black-formatter"
+            ]
+        },
+        "codespaces": {
+            "openFiles": [
+                "main.py"
+            ]
+        }
+    },
+    "forwardPorts": [
+        8000
+    ],
+    "postAttachCommand": "",
+    "remoteUser": "vscode",
+    "hostRequirements": {
+        "memory": "8gb",
+        "cpus": 4
+    },
+    "portsAttributes": {
+        "8000": {
+            "label": "Streamlit UI"
+        }
+    }
+}
