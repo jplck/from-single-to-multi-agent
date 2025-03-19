@@ -2,7 +2,7 @@ param name string
 param location string = resourceGroup().location
 param tags object = {}
 
-resource search 'Microsoft.Search/searchServices@2023-11-01' = {
+resource search 'Microsoft.Search/searchServices@2024-06-01-preview' = {
   name: name
   location: location
   sku: {
@@ -19,17 +19,17 @@ resource search 'Microsoft.Search/searchServices@2023-11-01' = {
     encryptionWithCmk: {
       enforcement: 'Unspecified'
     }
-    hostingMode: 'Default'
+    hostingMode: 'default'
     networkRuleSet: {
       ipRules: []
       bypass: 'None'
     }
     partitionCount: 1
-    publicNetworkAccess: 'Enabled'
+    publicNetworkAccess: 'enabled'
     replicaCount: 1
   }
 }
 
 output searchName string = search.name
 output searchEndpoint string = 'https://${search.name}.search.windows.net'
-output searchAdminKey string = listAdminKeys(search.id, '2023-11-01').primaryKey
+output searchAdminKey string = listAdminKeys(search.id, '2024-06-01-preview').primaryKey
