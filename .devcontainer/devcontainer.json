@@ -25,7 +25,8 @@
                 "ms-azuretools.vscode-azurefunctions",
                 "github.vscode-github-actions",
                 "GitHub.copilot",
-                "ms-python.black-formatter"
+                "ms-python.black-formatter",
+                "ms-toolsai.jupyter"
             ]
         },
         "codespaces": {

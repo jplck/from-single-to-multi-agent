@@ -8,6 +8,8 @@ param environmentName string
 @minLength(1)
 @description('Primary location for all resources')
 param location string
+@description('Primary location for all AI resources - Might difffer from the primary location')
+@allowed(['francecentral', 'swedencentral'])
 param aiResourceLocation string
 @description('Id of the user or app to assign application roles')
 param resourceGroupName string = ''
@@ -32,7 +34,7 @@ param openaiApiVersion string = '2024-08-01-preview'
 param openaiCapacity int = 50
 param voiceDeploymentModelName string = 'gpt-4o-realtime-preview'
 param voiceModelName string = 'gpt-4o-realtime-preview'
-param voiceModelVersion string = '2024-10-01'
+param voiceModelVersion string = '2024-12-17'
 
 param modelDeployments array = [
   {
@@ -163,5 +165,3 @@ output AZURE_AI_SEARCH_INDEX string = searchIndexName
 output BACKEND_API_URL string = 'http://localhost:8000'
 output FRONTEND_SITE_NAME string = 'http://127.0.0.1:3000'
 output STORAGE_ACCOUNT_URL string = storage.outputs.storageAccountUrl
-output UPLOAD_RESULTS bool = false
-output CHUNKING_ENABLED bool = true
