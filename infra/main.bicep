@@ -76,6 +76,7 @@ resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   tags: tags
 }
 
+/*
 module storage './core/data/storage.bicep' = {
   name: 'storage'
   scope: resourceGroup
@@ -101,6 +102,8 @@ module containerApps './core/host/container-apps.bicep' = {
   }
 }
 
+*/
+
 // Azure OpenAI Model
 module openai './ai/openai.bicep' = {
   name: 'openai'
@@ -111,11 +114,10 @@ module openai './ai/openai.bicep' = {
     customDomainName: !empty(openaiName) ? openaiName : '${abbrs.cognitiveServicesAccounts}${resourceToken}'
     name: !empty(openaiName) ? openaiName : '${abbrs.cognitiveServicesAccounts}${resourceToken}'
     deployments: modelDeployments
-    aiHubName: !empty(openaiName) ? '${openaiName}hub' : '${abbrs.cognitiveServicesAccounts}${resourceToken}-hub'
-    applicationInsightsId: monitoring.outputs.applicationInsightsId
-    storageAccountId: storage.outputs.storageAccountId
   }
 }
+
+/*
 
 module search './ai/search.bicep' = {
   name: 'search'
@@ -126,6 +128,8 @@ module search './ai/search.bicep' = {
     name: !empty(openaiName) ? openaiName : '${abbrs.searchSearchServices}${resourceToken}'
   }
 }
+
+*/
 
 // Monitor application with Azure Monitor
 module monitoring './core/monitor/monitoring.bicep' = {
@@ -145,11 +149,6 @@ output AZURE_RESOURCE_GROUP string = resourceGroup.name
 output AZURE_VOICE_COMPLETION_DEPLOYMENT_NAME string = voiceDeploymentModelName
 output AZURE_VOICE_COMPLETION_MODEL string = voiceModelName
 output AZURE_VOICE_COMPLETION_MODEL_VERSION string = voiceModelVersion
-output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
-output APPLICATIONINSIGHTS_NAME string = monitoring.outputs.applicationInsightsName
-output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.environmentName
-output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.registryLoginServer
-output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.registryName
 output AZURE_OPENAI_API_VERSION string = openaiApiVersion
 output AZURE_OPENAI_API_KEY string = openai.outputs.openaiKey
 output AZURE_OPENAI_ENDPOINT string = openai.outputs.openaiEndpoint
@@ -158,6 +157,12 @@ output AZURE_OPENAI_COMPLETION_DEPLOYMENT_NAME string = completionDeploymentMode
 output AZURE_OPENAI_COMPLETION_MODEL_VERSION string = completionModelVersion
 output AZURE_OPENAI_EMBEDDING_MODEL string = embeddingModelName
 output AZURE_OPENAI_EMBEDDING_DEPLOYMENT_NAME string = embeddingDeploymentModelName
+output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
+output APPLICATIONINSIGHTS_NAME string = monitoring.outputs.applicationInsightsName
+/*
+output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.environmentName
+output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.registryLoginServer
+output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.registryName
 output AZURE_AI_SEARCH_NAME string = search.outputs.searchName
 output AZURE_AI_SEARCH_ENDPOINT string = search.outputs.searchEndpoint
 output AZURE_AI_SEARCH_KEY string = search.outputs.searchAdminKey
@@ -165,3 +170,4 @@ output AZURE_AI_SEARCH_INDEX string = searchIndexName
 output BACKEND_API_URL string = 'http://localhost:8000'
 output FRONTEND_SITE_NAME string = 'http://127.0.0.1:3000'
 output STORAGE_ACCOUNT_URL string = storage.outputs.storageAccountUrl
+*/
