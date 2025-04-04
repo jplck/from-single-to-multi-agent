@@ -18,3 +18,4 @@ semantic-kernel[azure]==1.25.0
 pyperclip==1.9.0
 python-dotenv==1.0.1
 langchain-community==0.3.20
+mermaid-py==1.4.0
