@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-model_name = os.getenv("AZURE_OPENAI_MODEL_NAME")
+model_name = os.getenv("AZURE_OPENAI_COMPLETION_MODEL")
 
 llm = prepare_azure_openai_completion_model()
     
