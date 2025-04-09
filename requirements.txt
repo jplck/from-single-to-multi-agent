@@ -13,8 +13,8 @@ langgraph-cli[inmem]==0.1.77
 debugpy==1.8.13
 autogen-agentchat==0.4.9.2
 autogen-ext[openai]==0.4.9.2
-semantic-kernel==1.25.0
-semantic-kernel[azure]==1.25.0
+semantic-kernel==1.27.2
+semantic-kernel[azure]==1.27.2
 pyperclip==1.9.0
 python-dotenv==1.0.1
 langchain-community==0.3.20
