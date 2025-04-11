@@ -11,5 +11,15 @@
             "module": "src.single_react_agent.app",
             "console": "integratedTerminal"
         },
+        {
+            "name": "Debug Streamlit",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/vscode/.local/bin/streamlit",  // /home/xx/tmp/venv/bin/streamlit",
+            "args": [
+                "run",
+                "/workspaces/from-single-to-multi-agent/labs/samples/streamlit/app.py"
+            ]
+        }
     ]
 }
