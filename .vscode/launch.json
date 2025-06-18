@@ -8,18 +8,8 @@
             "name": "Python Debugger: Chat app.py",
             "type": "debugpy",
             "request": "launch",
-            "module": "src.single_react_agent.app",
+            "module": "labs.07-distributed-agents.client",
             "console": "integratedTerminal"
-        },
-        {
-            "name": "Debug Streamlit",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "/home/vscode/.local/bin/streamlit",  // /home/xx/tmp/venv/bin/streamlit",
-            "args": [
-                "run",
-                "/workspaces/from-single-to-multi-agent/labs/samples/streamlit/app.py"
-            ]
         }
     ]
 }
