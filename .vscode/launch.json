@@ -1,29 +1,59 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-         {
-            "name": "Python Debugger: Chat app.py",
+        {
+            "name": "Agent Server",
             "type": "debugpy",
             "request": "launch",
-            "module": "labs.07-distributed-agents.client",
-            "console": "integratedTerminal"
+            "program": "${workspaceFolder}/labs/07-distributed-agents/agents.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
         },
         {
-            "name": "Python Debugger: mcp_agents",
+            "name": "MCP Server",
             "type": "debugpy",
             "request": "launch",
-            "module": "labs.07-distributed-agents.mcp_agents",
-            "console": "integratedTerminal"
+            "program": "${workspaceFolder}/labs/07-distributed-agents/mcp_agents.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
         },
         {
-            "name": "Python Debugger: agents",
+            "name": "Client",
             "type": "debugpy",
             "request": "launch",
-            "module": "labs.07-distributed-agents.agents",
-            "console": "integratedTerminal"
+            "program": "${workspaceFolder}/labs/07-distributed-agents/client.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Agent Server (Remote Attach)",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "."
+                }
+            ]
+        }
+    ],
+    "compounds": [
+        {
+            "name": "All Components",
+            "configurations": ["Agent Server", "MCP Server", "Client"]
         }
     ]
 }
