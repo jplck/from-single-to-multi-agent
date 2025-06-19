@@ -29,6 +29,7 @@ The labs are organized in increasing complexity, starting from basic concepts an
 | AutoGen - Simple Group | Creating basic agent groups with AutoGen | [06-autogen/01_autogen-simple-group.ipynb](labs/06-autogen/01_autogen-simple-group.ipynb) |
 | AutoGen - Group Chat | Building multi-agent conversations with AutoGen | [06-autogen/02_autogen-group-chat.ipynb](labs/06-autogen/02_autogen-group-chat.ipynb) |
 | AutoGen - Reasoning | Implementing advanced reasoning with AutoGen | [06-autogen/03_autogen-reasoning.ipynb](labs/06-autogen/03_autogen-reasoning.ipynb) |
+| Distributed Agents | Building a distributed system with multiple agents using MCP | [07-distributed-agents](labs/07-distributed-agents) |
 | Single React Agent | Implementation of a basic ReAct pattern agent | [Single React Agent](labs/single_react_agent) |
 
 ## Key Concepts Covered
@@ -59,12 +60,20 @@ The labs are organized in increasing complexity, starting from basic concepts an
 - Agent coordination and communication
 - Multi-agent problem solving through collaboration
 - Group chat implementations
+- Distributed agent systems using Model Context Protocol (MCP)
 
 ### AutoGen Framework
 
 - Building agent groups
 - Implementing conversational agents
 - Advanced reasoning capabilities
+
+### Distributed Agents with MCP
+
+- Model Context Protocol (MCP) for agent communication
+- FastAPI servers for hosting specialized agents
+- Agent discovery and orchestration
+- Distributed system architecture
 
 ## Getting Started
 
