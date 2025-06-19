@@ -14,7 +14,7 @@ load_dotenv()
 api_key = os.environ.get("AZURE_OPENAI_API_KEY")
 if api_key:
     print("Using Azure OpenAI")
-    deployment_name=os.environ["AZURE_OPENAI_REASONING_DEPLOYMENT_NAME"] 
+    deployment_name=os.environ["AZURE_OPENAI_COMPLETION_DEPLOYMENT_NAME"] 
     llm = init_chat_model(
         deployment_name, 
         model_provider="azure_openai", 
@@ -51,7 +51,16 @@ async def main():
         tools=tools,
     )
 
-    inputs = {"messages": [{"role": "system", "content": "Your job is to orchestrate multiple agents to complete tasks. Use the tools provided to you to select the right agents to call. Start always with getting the list of available agents."}, {"role": "user", "content": "Write a short story about a robot learning to dance."}]}
+    system_prompt = """
+    Your job is to orchestrate multiple agents to complete tasks. Create a plan what to call and when. 
+    Use the tools provided to you to select the right agents to call. Start always with getting the list of available agents. 
+    Iterate on your results and refine your plan based on the responses you get from the agents by calling an agent from the list of available agents. 
+    If you need to call an agent, use the `execute_agent` tool with the agent ID and the content you want to send.
+    """
+
+    inputs = {"messages": [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": "Write a short story about a robot learning to dance."}]}
     response = await agent.ainvoke(inputs)
     print("Agent response:", response)
 

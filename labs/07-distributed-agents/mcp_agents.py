@@ -27,22 +27,21 @@ def list_agents() -> list[dict]:
     return cards
 
 @mcp.tool()
-def execute_agent(id: str, payload: str) -> str:
+def execute_agent(id: str, content: str) -> str:
     """
     Executes the specified agent.
 
     Args:
         id (str): The ID of the agent to execute.
-        payload (str): The payload to send to the agent's endpoint, in JSON format.
+        content (str): The content to send to the agent.
 
     """
     for card in cards:
         if card["id"] == id:
             url = card["url"]
-            try:
-                payload = json.loads(payload)  # Convert string payload to JSON
-            except json.JSONDecodeError:
-                return "Invalid JSON payload"
+            
+            # Create a simple payload with the content
+            payload = {"content": content}
             
             # Make the REST call
             try:

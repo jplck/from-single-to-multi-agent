@@ -35,24 +35,28 @@ else:
 # Create FastAPI app
 app = FastAPI(title="Agent Servers", description="Distributed agents for text generation and editing")
 
-# Input models
-class WriterInput(BaseModel):
-    input: str
-
-class EditorInput(BaseModel):
-    text: str
-
 @app.post("/writer_agent")
-async def writer_agent(request: WriterInput):
+async def writer_agent(request: Request):
     """
     Writer agent that generates text based on the provided input.
     """
     try:
+        # Parse the request body directly
+        data = await request.json()
+        
+        # Extract content from the messages
+        content = ""
+        if isinstance(data, dict) and "content" in data:
+            content = data["content"]
+        else:
+            # Try to convert the entire data to a string as fallback
+            content = str(data)
+        
         # Create prompt for generating stories
         prompt = f"""You are a creative story writer. Write a short, engaging story based on the following prompt.
         Keep it under 300 words and make it interesting.
         
-        Prompt: {request.input}
+        Prompt: {content}
         """
         
         # Get response from language model
@@ -64,20 +68,32 @@ async def writer_agent(request: WriterInput):
         return JSONResponse(status_code=500, content={"error": str(e)})
 
 @app.post("/editor_agent")
-async def editor_agent(request: EditorInput):
+async def editor_agent(request: Request):
     """
     Editor agent that improves and edits the provided text.
     """
     try:
+        # Parse the request body directly
+        data = await request.json()
+        
+        # Extract content from the messages
+        content = ""
+        if isinstance(data, dict) and "content" in data:
+            content = data["content"]
+        else:
+            # Try to convert the entire data to a string as fallback
+            content = str(data)
+        
         # Create prompt for editing text
         prompt = f"""You are a professional text editor. Improve the following text by:
         1. Fixing any grammar or spelling issues
         2. Enhancing the clarity and flow
         3. Improving word choice and sentence structure
         
-        Keep the same general meaning and tone, but make the text more polished and professional.
+        Keep the same general meaning and tone, but make the text more polished and professional. If you are satisfied with the text, return it as is.
+        Provide a concise summary of the changes made.
         
-        Text to edit: {request.text}
+        Text to edit: {content}
         """
         
         # Get response from language model

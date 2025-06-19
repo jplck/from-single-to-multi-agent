@@ -10,6 +10,20 @@
             "request": "launch",
             "module": "labs.07-distributed-agents.client",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Python Debugger: mcp_agents",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "labs.07-distributed-agents.mcp_agents",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python Debugger: agents",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "labs.07-distributed-agents.agents",
+            "console": "integratedTerminal"
         }
     ]
 }
