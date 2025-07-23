@@ -6,8 +6,18 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.chat_models import init_chat_model
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, SystemMessage
+from typing import Any
+from uuid import UUID
+from langchain_core.callbacks import BaseCallbackHandler
+from langchain_core.messages import AIMessage
+from langchain_core.outputs.llm_result import LLMResult
 
 load_dotenv()
+
+class CallbackHandler(BaseCallbackHandler):
+    def on_llm_end(self, response: LLMResult, *, run_id: UUID, parent_run_id: UUID | None = None, **kwargs: Any) -> Any:
+        print(f"LLM response: {response.generations[0][0].text}")
+        return
 
 api_key = os.environ.get("AZURE_OPENAI_API_KEY")
 if api_key:
@@ -62,7 +72,7 @@ async def main():
         )
     ]
     
-    response = await agent.ainvoke(inputs)
+    response = await agent.ainvoke(inputs, callbacks=[CallbackHandler()])
     print("Agent response:", response)
 
 if __name__ == "__main__":

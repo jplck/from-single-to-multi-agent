@@ -13,10 +13,10 @@ class CustomReactAgent:
         self.tools = tools
         self.tools_by_name = {tool.name: tool for tool in tools}
         
-    async def ainvoke(self, messages: list[BaseMessage]):
+    async def ainvoke(self, messages: list[BaseMessage], callbacks=[]):
         @task
         async def call_model(messages):
-            response = await self.model.bind_tools(self.tools).ainvoke(messages)
+            response = await self.model.bind_tools(self.tools).ainvoke(messages, config={"callbacks": callbacks})
             return response
                 
         @task
